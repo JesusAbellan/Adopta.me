@@ -1,57 +1,54 @@
-{% extends 'core/base.html' %}
-{% block title %}Bienvenido{% endblock title %}
+{% extends "core/base.html" %}
+{% block title %}
+    Bienvenido
+{% endblock title %}
 {% block content %}
     <div class="mt-3 px-3 py-5 bg-light rounded">
-        <h2 class="mb-5 display-3 text-center">
-            Nuevas Mascotas
-        </div>
-        <div class="row">
-            {% for pet in pets %}
-                <div class="col-sm-3">
-                    <div class="card">
-                        {% if pet.image %}
-                            <img src="{{ pet.image.url }}"
-                                 class="card-img-top"
-                                 alt="{{ pet.description }}">
-                        {% endif %}
-                        <div class="card-body">
-                            <h5 class="card-title">{{ pet.name }}</h5>
-                            <p class="card-text">{{ pet.description }}</p>
-                        </div>
-                        <div class="card-footer d-flex justify-content-between">
-                            <ul class="list-group list-group-flush w-100">
-                                <li class="list-group-item w-100">
-                                    <small class="text-muted">{{ pet.create_at }}</small>
-                                </li>
-                                <li class="list-group-item w-100">
-                                    <small class="text-muted">{{ pet.age }} años</small>
-                                </li>
-                                <li class="list-group-item w-100">
-                                    <small class="text-muted">{{ pet.specie }}</small>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+        <h2 class="mb-5 display-3 text-center">Nuevas Mascotas</h2>
+    </div>
+    <div class="row">
+        {% for pet in pets %}
+            <a href="{% url 'pet:detail' pet.id %}" class="col-sm-3 text-decoration-none text-reset">
+                <div class="card">
+                    {% if pet.image %}
+                        <img src="{{ pet.image.url }}"
+                             class="card-img-top"
+                             alt="{{ pet.description }}">
+                    {% endif %}
                 </div>
-            {% endfor %}
-        </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ pet.name }}</h5>
+                    <p class="card-text">{{ pet.description }}</p>
+                </div>
+                <div class="card-footer d-flex justify-content-between">
+                    <ul class="list-group list-group-flush w-100">
+                        <li class="list-group-item w-100">
+                            <small class="text-muted">{{ pet.create_at }}</small>
+                        </li>
+                        <li class="list-group-item w-100">
+                            <small class="text-muted">{{ pet.age }} años</small>
+                        </li>
+                        <li class="list-group-item w-100">
+                            <small class="text-muted">{{ pet.specie }}</small>
+                        </li>
+                    </ul>
+                </div>
+            </a>
+        {% endfor %}
     </div>
     <div class="mt-3 px-3 py-5 bg-light rounded">
-        <h2 class="mb-5 display-3 text-center">
-            Species
-        </div>
-        <div class="card-group">
-            {% for specie in species %}
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ specie.name }}</h5>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">{{ specie.pets.count }} pets</small>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
+        <h2 class="mb-5 display-3 text-center">Species</h2>
     </div>
-</div>
-{% endblock %}
+    <div class="card-group">
+        {% for specie in species %}
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ specie.name }}</h5>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">{{ specie.pets.count }} pets</small>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock content %}
