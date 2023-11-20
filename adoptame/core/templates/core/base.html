@@ -4,23 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <title>Adopta.me | {% block title %} {% endblock %}</title>
+    <title>Adopta.me | {% block title %} {% endblock title %}</title>
 </head>
 <body>
     <nav class="px-4 py-4 d-flex justify-content-between align-items-center border-bottom border-gray-200">
-        <a href="/" class="display-3 fw-bold text-decoration-none text-reset">Inicio</a>
+        <a href="{% url 'core:index' %}" class="display-3 fw-bold text-decoration-none text-reset">Inicio</a>
 
         <div>
-            <a href="/contact/" class="mx-4 display-6 fw-bold text-decoration-none text-reset link-secondary">Nueva Mascota</a>
-            <a href="/contact/" class="mx-4 display-6 fw-bold text-decoration-none text-reset link-secondary">Buscador</a>
+            <a href="" class="mx-4 display-6 fw-bold text-decoration-none text-reset link-secondary">Nueva Mascota</a>
+            <a href="" class="mx-4 display-6 fw-bold text-decoration-none text-reset link-secondary">Buscador</a>
 
-            <button type="button" class="btn btn-primary">Registro</button>
-            <button type="button" class="btn btn-secondary">Inicio de Sesion</button>
+            <a href="{% url 'core:signup' %}"" class="btn btn-primary">Registro</a>
+            <a type="button" class="btn btn-secondary">Inicio de Sesion</a>
         </div>
     </nav>
     <div class="px-2 py-2">
         {% block content %}
-        {% endblock %}
+        {% endblock content %}
     </div>
 
     <footer class="px-4 py-4 d-flex justify-content-between bg-dark">
@@ -33,7 +33,7 @@
 
             <ul class="my-2 px-0">
                 <li><a href="#" class="link-info text-decoration-none">Sobre nosotros</a></li>
-                <li><a href="{% url 'contact' %}" class="link-info text-decoration-none">Contacto</a></li>
+                <li><a href="{% url 'core:contact' %}" class="link-info text-decoration-none">Contacto</a></li>
                 <li><a href="#" class="link-info text-decoration-none">Privacidad</a></li>
                 <li><a href="#" class="link-info text-decoration-none">Terminos de uso</a></li>
             </ul>

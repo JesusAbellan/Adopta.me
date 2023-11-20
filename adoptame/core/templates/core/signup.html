@@ -1,0 +1,41 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+Registro
+{% endblock title %}
+
+{% block content %}
+<div class="w-50 my-3 mx-auto bg-light p-3 rounded-3">
+    <h2 class="mb-3">Registro</h2>
+
+    <form method="post" action="." class='container'>
+        {% csrf_token %}
+        <div class="mb-3 row gy-4">
+            <label class="col-4 ">Nombre de usuario:</label>
+            {{ form.username }}
+        </div>
+        <div class="mb-3 row">
+            <label class="col-4">Email:</label>
+            {{ form.email }}
+        </div>
+        <div class="mb-3 row">
+            <label class="col-4">Contraseña: </label>
+            {{ form.password1 }}
+        </div>
+        <div class="mb-3 row">
+        <label class="col-4">Repite la contraseña:</label>
+            {{ form.password2 }}
+        </div>
+
+        {% if form.errors or form.non_field_erros %}
+            <div class="mb-2 p-3 bg-error rounded-3">
+                {% for field in form %}
+                    {{ field.errors }}
+                {% endfor %}
+                {{ form.non_field_erros }}
+            </div>
+        {% endif %}
+        <button class="btn btn-primary px-4 py-3">Registrate</button>
+    </form>
+</div>
+{% endblock content %}
