@@ -17,7 +17,7 @@
         <a href="{% url 'core:index' %}" class="display-3 fw-bold text-decoration-none text-reset">Inicio</a>
 
         <div>
-            <a href="" class="mx-4 display-6 fw-bold text-decoration-none text-reset link-secondary">Nueva Mascota</a>
+            <a href="{% url 'pet:new' %}" class="mx-4 display-6 fw-bold text-decoration-none text-reset link-secondary">Nueva Mascota</a>
             <a href="" class="mx-4 display-6 fw-bold text-decoration-none text-reset link-secondary">Buscador</a>
 
             {% if request.user.is_authenticated %}
