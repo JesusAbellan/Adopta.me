@@ -1,0 +1,23 @@
+{% extends 'core/base.html' %}
+
+{% block title %}{{ title }}{% endblock title %}
+
+{% block content %}
+<h1 class="mb-3">{{ title }}</h1>
+
+<form method="post" action="." enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="py-2 form-group">
+        {{ form.as_p }}
+    </div>
+    {% if form.errors or form.non_field_erros %}
+        <div class="mb-2 p-3 bg-error rounded-3">
+            {% for field in form %}
+                {{ field.errors }}
+            {% endfor %}
+            {{ form.non_field_erros }}
+        </div>
+    {% endif %}
+    <button class="btn btn-primary px-4 py-3">Agregar mascota</button>
+</form>
+{% endblock content %}
