@@ -27,5 +27,5 @@ class Pet(models.Model):
     create_at = models.DateField(auto_now_add=True)
     created_by = models.ForeignKey(User, verbose_name="Owner", related_name='pets', on_delete=models.CASCADE)
     specie = models.ForeignKey(Specie, related_name='pets', verbose_name="Pet's specie", on_delete=models.CASCADE)
-    race = models.ForeignKey(Race, related_name='pets', verbose_name="Pet's race", null=True, on_delete=models.SET_NULL)
+    race = models.ForeignKey(Race, related_name='pets', verbose_name="Pet's race",blank=True, null=True, on_delete=models.SET_NULL)
     image = models.ImageField(upload_to='pet_images', blank=True, null=True)
