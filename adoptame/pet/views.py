@@ -28,6 +28,13 @@ def new(request):
 
     return render(request, 'pet/form.html', {'form': form, 'title': 'Tu nueva mascota'})
 
+@login_required
+def delete(request, pk):
+    pet = get_object_or_404(Pet, pk=pk, created_by=request.user)
+    pet.delete()
+
+    return redirect('dashboard:index')
+
 def get_races(request):
     specie_id = request.GET.get('specie')
     races = Race.objects.filter(specie=specie_id).order_by('name')

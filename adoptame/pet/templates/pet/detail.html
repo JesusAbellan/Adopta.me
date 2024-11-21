@@ -13,8 +13,19 @@
         {% if pet.description %}<p><strong>Descripcion:</strong> {{ pet.description }}</p>{% endif %}
         <p class="text-secondary"><strong>Propietario:</strong> {{ pet.created_by }}</p>
         <p class="text-secondary"><strong>Edad:</strong> {{ pet.age }} año/s</p>
-        {% if pet.race %}<p><strong>Raza:</strong> {{ pet.race }}</p>{% endif %}
+        {% if pet.race %}<p class="text-secondary"><strong>Raza:</strong> {{ pet.race }}</p>{% endif %}
+
+        {% if request.user == pet.created_by %}
+        <div class="card border-danger" style="width: 18rem;">
+          <div class="card-body">
+            <p class="card-text"> Eres el propietario de esta mascota </p>
+            <a href="{% url 'pet:delete' pet.id %}" class="btn btn-success">Editar</a>
+            <a href="{% url 'pet:delete' pet.id %}" class="btn btn-danger">Borrar Mascota</a>
+          </div>
+        </div>
+        {% else %}
         <a href='#' class="btn btn-primary">Contactar</a>
+        {% endif %}
       </div>
     </div>
   </div>
