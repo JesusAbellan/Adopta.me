@@ -19,7 +19,7 @@
         <div class="card border-danger" style="width: 18rem;">
           <div class="card-body">
             <p class="card-text"> Eres el propietario de esta mascota </p>
-            <a href="{% url 'pet:delete' pet.id %}" class="btn btn-success">Editar</a>
+            <a href="{% url 'pet:edit' pet.id %}" class="btn btn-success">Editar</a>
             <a href="{% url 'pet:delete' pet.id %}" class="btn btn-danger">Borrar Mascota</a>
           </div>
         </div>

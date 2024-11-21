@@ -16,7 +16,31 @@ class NewPetForm(forms.ModelForm):
             }),
             'race': forms.Select(attrs={
                 'class': FORM_SELECT,
-                'data-live-search': 'true'
+                'data-live-search': 'true',
+            }),
+            'name': forms.TextInput(attrs={
+                'class': FORM_CONTROL,
+            }),
+            'description': forms.Textarea(attrs={
+                'class': FORM_CONTROL,
+            }),
+            'age': forms.NumberInput(attrs={
+                'class': FORM_CONTROL,
+            }),
+            'image': forms.FileInput(attrs={
+                'class': FORM_CONTROL,
+            }),
+        }
+
+class EditPetForm(forms.ModelForm):
+    class Meta:
+        model = Pet
+        fields = ('race', 'name', 'description', 'image', 'age', 'is_adopted')
+
+        widgets = {
+            'race': forms.Select(attrs={
+                'class': FORM_SELECT,
+                'data-live-search': 'true',
             }),
             'name': forms.TextInput(attrs={
                 'class': FORM_CONTROL,

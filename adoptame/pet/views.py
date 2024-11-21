@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse
-from .forms import NewPetForm
+from .forms import NewPetForm, EditPetForm
 from .models import Pet
 
 def detail(request, pk):
@@ -21,12 +21,27 @@ def new(request):
             pet.save()
 
             return redirect('pet:detail', pk=pet.id)
-        else:
-            form = NewPetForm()
-
-    form = NewPetForm()
+    else:
+        form = NewPetForm()
 
     return render(request, 'pet/form.html', {'form': form, 'title': 'Tu nueva mascota'})
+
+
+@login_required
+def edit(request, pk):
+    pet = get_object_or_404(Pet, pk=pk, created_by=request.user)
+
+    if request.method == 'POST':
+        form = EditPetForm(request.POST, request.FILES, instance=pet)
+
+        if form.is_valid():
+            form.save()
+
+            return redirect('pet:detail', pk=pet.id)
+    else:
+        form = EditPetForm(instance=pet)
+
+    return render(request, 'pet/form.html', {'form': form, 'title': 'Edita tu mascota'})
 
 @login_required
 def delete(request, pk):
