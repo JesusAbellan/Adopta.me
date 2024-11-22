@@ -9,6 +9,14 @@ class NewPetForm(forms.ModelForm):
     class Meta:
         model = Pet
         fields = ('specie', 'race', 'name', 'description', 'image', 'age')
+        labels = {
+            'specie': 'Especie',
+            'race':'Raza',
+            'name':'Nombre',
+            'description':'Descripcion',
+            'image':'Foto',
+            'age':'Edad',
+            }
 
         widgets = {
             'specie': forms.Select(attrs={
@@ -35,7 +43,15 @@ class NewPetForm(forms.ModelForm):
 class EditPetForm(forms.ModelForm):
     class Meta:
         model = Pet
-        fields = ('race', 'name', 'description', 'image', 'age', 'is_adopted')
+        fields = ('race', 'name', 'description', 'image', 'age', 'adopted')
+        labels = {
+            'race':'Raza',
+            'name':'Nombre',
+            'description':'Descripcion',
+            'image':'Foto',
+            'age':'Edad',
+            'adopted': 'Adoptado'
+            }
 
         widgets = {
             'race': forms.Select(attrs={
