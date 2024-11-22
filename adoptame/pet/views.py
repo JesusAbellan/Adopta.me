@@ -2,7 +2,38 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse
 from .forms import NewPetForm, EditPetForm
-from .models import Pet
+from django.db.models import Q
+from .models import Pet, Specie, Race
+
+def pets(request):
+    query = request.GET.get('query','')
+    maxAge = request.GET.get('maxAge', 20)
+    specie_id = request.GET.get('specie', 0)
+    race_id = request.GET.get('race', 0)
+    species = Specie.objects.all()
+    races = Race.objects.all()
+    pets = Pet.objects.filter(adopted=False)
+
+    if query:
+        pets = pets.filter(Q(name__icontains=query) | Q(description__icontains=query))
+
+    if specie_id:
+        pets = pets.filter(specie_id=specie_id)
+
+    if race_id:
+        pets = pets.filter(race_id=race_id)
+
+    pets = pets.filter(age__lte=maxAge)
+
+    return render(request, 'pet/pets.html', {
+        'pets':pets,
+        'query':query,
+        'maxAge': int(maxAge),
+        'species': species,
+        'specie_id': int(specie_id),
+        'races': races,
+        'race_id': int(race_id)
+    })
 
 def detail(request, pk):
     pet = get_object_or_404(Pet, pk=pk)

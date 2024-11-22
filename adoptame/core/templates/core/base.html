@@ -18,7 +18,7 @@
 
         <div class="display-6">
             <a href="{% url 'pet:new' %}" class="btn fs-3 fw-bold">Nueva Mascota</a>
-            <a href="" class="btn fs-3 fw-bold">Buscador</a>
+            <a href="{% url 'pet:pets' %}" class="btn fs-3 fw-bold">Buscador</a>
 
             {% if request.user.is_authenticated %}
             <a href="#" class="btn btn-primary">Mensajes</a>
