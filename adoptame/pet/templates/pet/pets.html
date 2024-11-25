@@ -1,0 +1,70 @@
+{% extends "core/base.html" %}
+
+{% block title %} Mascotas {% endblock title %}
+
+{% block content %}
+    <div class="row px-3">
+        <div class="col col-2 bg-white rounded">
+            <form class="form-control mt-2" method="get" action="{% url 'pet:pets' %}">
+                <div class="form-group">
+                    <input name="query" class="w-100 form-text rounded" type="text" value="{{ query }}" placeholder="Encuentra tu nueva mascota"/>
+                </div>
+                <div class="form-group mt-4">
+                    <label for="maxAge" class="form-label mt-2">Edad Maxima: </label><output>{% if maxAge %} {{ maxAge }} {% else %} 20 {% endif %}</output>
+                    <input type="range" class="form-range" id="maxAge" name="maxAge" min=0 max=20 value={% if maxAge %} {{ maxAge }} {% else %} 20 {% endif %} oninput="this.previousElementSibling.value = this.value">
+                </div>
+
+                    <button class="btn btn-secondary btn-sm mt-2">Buscar</button>
+            </form>
+
+            <div class="container mt-4">
+                <h2>Especies</h2>
+                <div class="list-group">
+                    {% for specie in species %}
+                    <a class="list-group-item {% if specie.id == specie_id %} active {% endif %}" href="{% url 'pet:pets' %}?query={{ query }}&specie={{ specie.id }}{% if race %}&race={{ race_id }}{% endif %}"> {{ specie.name }}</a>
+                    {% endfor %}
+                </div>
+
+                <h2>Razas</h2>
+                <div class="list-group">
+                    {% for race in races %}
+                    <a class="list-group-item {% if race.id == race_id %} active {% endif %}" href="{% url 'pet:pets' %}?query={{ query }}{% if specie_id %}&specie={{ specie_id }}{% endif %}&race={{ race.id }}"> {{ race.name }}</a>
+                    {% endfor %}
+                </div>
+
+              <a href="{% url 'pet:pets' %}" class="btn btn-warning mt-4">Limpiar filtros</a>
+            </div>
+        </div>
+        <div class="col col-10">
+            <div class="row bg-light">
+                {% for pet in pets %}
+                    <a href="{% url 'pet:detail' pet.id %}" class="col col-sm-4 mb-2 text-decoration-none text-reset">
+                        <div class="card">
+                                {% if pet.image %}
+                                    <img src="{{ pet.image.url }}" class="card-img-top" alt="{{ pet.description }}" height="auto" width="auto">
+                                {% endif %}
+        
+                            <div class="card-body">
+                                <h5 class="card-title">{{ pet.name }}</h5>
+                                <p class="card-text">{{ pet.description }}</p>
+                            </div>
+                            <div class="card-footer d-flex justify-content-between">
+                                <ul class="list-group list-group-flush w-100">
+                                    <li class="list-group-item w-100">
+                                        <small class="text-muted">{{ pet.create_at }}</small>
+                                    </li>
+                                    <li class="list-group-item w-100">
+                                        <small class="text-muted">{{ pet.age }} años</small>
+                                    </li>
+                                    <li class="list-group-item w-100">
+                                        <small class="text-muted">{{ pet.specie }}</small>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock content %}
