@@ -15,6 +15,9 @@ class Race(models.Model):
     name = models.CharField("Raza", max_length=50)
     specie = models.ForeignKey(Specie, on_delete=models.CASCADE)
 
+    class Meta:
+        ordering = ('name',)
+
     def __str__(self):
         return self.name
 
@@ -29,3 +32,9 @@ class Pet(models.Model):
     specie = models.ForeignKey(Specie, related_name='pets', verbose_name="Pet's specie", on_delete=models.CASCADE)
     race = models.ForeignKey(Race, related_name='pets', verbose_name="Pet's race",blank=True, null=True, on_delete=models.SET_NULL)
     image = models.ImageField(upload_to='pet_images', blank=True, null=True)
+
+    class Meta:
+        ordering = ('name',)
+
+    def __str__(self):
+        return self.name
