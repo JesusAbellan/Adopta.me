@@ -1,21 +1,21 @@
-{% extends 'core/base.html' %}
+{% extends "core/base.html" %}
 
 {% block title %}
 Inicio de Sesión
 {% endblock title %}
 
 {% block content %}
-<div class="w-25 my-3 mx-auto bg-light p-3 rounded-3">
-    <h2 class="mb-3">Registro</h2>
+<div class="w-25 my-3 mx-auto bg-white p-3 border border-dark rounded-3">
+    <h2 class="mb-3">Inicio de sesion</h2>
 
     <form method="post" action="." class='container'>
         {% csrf_token %}
-        <div class="mb-3 row gy-4">
-            <label class="col-4 ">Nombre de usuario:</label>
+        <div class="mb-3 row">
+            <label class="col-8 ">Nombre de usuario:</label>
             {{ form.username }}
         </div>
         <div class="mb-3 row">
-            <label class="col-4">Contraseña: </label>
+            <label class="col-8">Contraseña: </label>
             {{ form.password }}
         </div>
 
