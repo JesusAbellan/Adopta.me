@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'fontawesomefree',
     'core',
     'dashboard',
+    'chat',
     'pet',
 ]
 

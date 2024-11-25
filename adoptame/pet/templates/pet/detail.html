@@ -24,7 +24,7 @@
           </div>
         </div>
         {% else %}
-        <a href='#' class="btn btn-primary">Contactar</a>
+        <a href="{% url 'chat:new' pet.id %}" class="btn btn-primary">Contactar</a>
         {% endif %}
       </div>
     </div>
