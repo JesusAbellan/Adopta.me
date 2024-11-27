@@ -26,7 +26,7 @@ class Pet(models.Model):
     name = models.CharField('Name of the pet',  max_length=50)
     age = models.IntegerField('Age in years', default=0)
     description = models.TextField('General description', blank=True, null=True)
-    adopted = models.BooleanField('Is adopted?', null=True, blank=True)
+    adopted = models.BooleanField('Is adopted?', default=False)
     create_at = models.DateField(auto_now_add=True)
     created_by = models.ForeignKey(User, verbose_name="Owner", related_name='pets', on_delete=models.CASCADE)
     specie = models.ForeignKey(Specie, related_name='pets', verbose_name="Pet's specie", on_delete=models.CASCADE)
