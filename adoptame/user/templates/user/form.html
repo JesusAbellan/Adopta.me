@@ -1,0 +1,37 @@
+{% extends "core/base.html" %}
+
+{% block title %}
+Registro
+{% endblock title %}
+
+{% block content %}
+<div class="w-25 my-3 mx-auto bg-white p-3 border border-dark rounded-3">
+    <h2 class="mb-3">{{ title }}</h2>
+
+    <form method="post" action="." class='container'>
+        {% csrf_token %}
+        <div class="mb-3 row">
+            <label class="col-8 ">Nombre de usuario:</label>
+            {{ form.username }}
+        </div>
+        <div class="mb-3 row">
+            <label class="col-8">Email:</label>
+            {{ form.email }}
+        </div>
+        <div class="mb-3 row">
+            <label class="form-check-label col-5" for="id_is_shelter">¿Es un refugio?</label>
+                {{ form.is_shelter }}
+        </div>
+
+        {% if form.errors or form.non_field_erros %}
+            <div class="mb-2 p-3 bg-error rounded-3">
+                {% for field in form %}
+                    {{ field.errors }}
+                {% endfor %}
+                {{ form.non_field_erros }}
+            </div>
+        {% endif %}
+        <button class="btn btn-primary px-4 py-3">Editar</button>
+    </form>
+</div>
+{% endblock content %}

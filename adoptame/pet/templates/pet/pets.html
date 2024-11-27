@@ -42,6 +42,8 @@
                         <div class="card">
                                 {% if pet.image %}
                                     <img src="{{ pet.image.url }}" class="card-img-top" alt="{{ pet.description }}" height="auto" width="auto">
+                                {% else %}
+                                    <img src="/media/resources/no_image.jpg" width="100%" height="auto" class="rounded" alt="{{ pet.name }}">
                                 {% endif %}
         
                             <div class="card-body">

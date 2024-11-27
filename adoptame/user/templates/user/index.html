@@ -1,0 +1,24 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Gestion de usuarios {% endblock title%}
+
+{% block content %}
+
+<ul class="list-group list-group-flush w-100">
+{% for user in users %}
+    <li class="list-group-item w-100 d-flex rounded border py-3 mb-2">
+        <div class="col-4">
+            {{ user }}
+        </div>
+        <div class="col-4">
+            {{ user.date_joined }}{% if user.is_shelter %} | <i class="fa-solid fa-house-circle-check" style="color:green"></i> {% endif %}
+        </div>
+        <div class="col-4">
+            <a href="{% url 'user:edit' user.id %}" class="btn btn-success">Editar</a>
+            <a href="{% url 'user:delete' user.id %}" class="btn btn-danger">Borrar</a>
+            
+        </div>
+    </li>
+{% endfor %}
+</ul>
+{% endblock content%}
