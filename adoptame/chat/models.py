@@ -1,6 +1,7 @@
-from django.contrib.auth.models import User
+
 from django.db import models
 from pet.models import Pet
+from user.models import PetOwner as User
 
 class Chat(models.Model):
     pet = models.ForeignKey(Pet, related_name='chats', on_delete=models.CASCADE)

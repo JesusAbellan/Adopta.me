@@ -19,9 +19,9 @@
                         <p class="card-text">{{ pet.description }}</p>
                     </div>
                     <div class="card-footer d-flex justify-content-between">
-                        <ul class="list-group list-group-flush w-100">
+                        <ul class="list-group list-group-flush w-100 rounded">
                             <li class="list-group-item w-100">
-                                <small class="text-muted">{{ pet.create_at }}</small>
+                                <small class="text-muted"> {{ pet.created_by }} | {{ pet.create_at }}{% if pet.created_by.is_shelter %} | <i class="fa-solid fa-house-circle-check" style="color:green"></i> {% endif %}</small>
                             </li>
                             <li class="list-group-item w-100">
                                 <small class="text-muted">{{ pet.age }} años</small>
