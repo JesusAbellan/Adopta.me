@@ -71,7 +71,3 @@ class EditPetForm(forms.ModelForm):
                 'class': FORM_CONTROL,
             }),
         }
-
-    # def __init__(self, *args, **kwargs):
-    #     super().__init__(*args, **kwargs)
-    #     self.fields['race'].queryset = Race.objects.none()
