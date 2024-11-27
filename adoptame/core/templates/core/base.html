@@ -17,6 +17,9 @@
         <a href="{% url 'core:index' %}" class="display-3 fw-bold text-decoration-none text-reset">Inicio</a>
 
         <div class="display-6">
+            {% if user.is_superuser %}
+            <a href="{% url 'user:index' %}" class="btn fs-3 fw-bold text-danger">Gestionar usuarios</a>
+            {% endif %}
             <a href="{% url 'pet:new' %}" class="btn fs-3 fw-bold">Nueva Mascota</a>
             <a href="{% url 'pet:pets' %}" class="btn fs-3 fw-bold">Buscador</a>
 
