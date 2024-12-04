@@ -43,3 +43,6 @@ def logout_view(request):
     }
 
     return render(request, 'core/index.html', context)
+
+def error_404(request):
+    return render(request, 'core/404.html')
