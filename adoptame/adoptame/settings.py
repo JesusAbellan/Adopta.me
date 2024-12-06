@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,10 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-+y%(ozcm5@cs782(2f#8coz6@-o)y@zw3ca2pf-ho%dyg-^z@w'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ["103.241.67.193", "0.0.0.0", "127.0.0.1"]
-CSRF_TRUSTED_ORIGINS = ["https://103.241.67.193", "http://103.241.67.193"]
+ALLOWED_HOSTS = ["192.168.1.110", "0.0.0.0", "127.0.0.1"]
 
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
@@ -90,7 +88,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'adoptame',
         'USER': 'postgres',
-        'PASSWORD': 'Hermenegildo97'
+        'PASSWORD': ''
     }
 }
 
@@ -130,9 +128,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'static'
-STATICFILES_DIRS = os.path.join(BASE_DIR,'static')
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
